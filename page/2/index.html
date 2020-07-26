@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hexo</title><meta name="description"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/page/2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="Hexo"><meta property="og:url" content="http://yoursite.com/page/2/"><meta property="og:site_name" content="Hexo"><meta property="og:description"><meta property="og:image" content="http://yoursite.com/img/avatar.png"><meta property="article:published_time" content="2020-07-26T14:35:07.278Z"><meta property="article:modified_time" content="2020-07-26T14:35:07.278Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">23</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">Hexo</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/26/gamewp/" title="gamewp">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="gamewp"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/26/gamewp/" title="gamewp">gamewp</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-26 22:28:47"><i class="far fa-calendar-alt"></i>2020-07-26</time></div><div class="content">游戏过关先分析
+打开看看
+解法一发现是游戏，直接通过获得flag
+
+解法二但是不会玩怎么办
+用OD动态调试
+智能搜索发现flag处有输出，那只需跳转到这就行
+
+
+直接将前面输出题目的代码汇编成 jmp 000EE940
+运行它
+
+ zsctf{T9is_tOpic_1s_v5ry_int7resting_b6t_others_are_n0t}
+解法三用ida静态调试
+搜索主函数main
+简单分析发现都点亮的话会进入sub_457AB4();
+点进去查看，出现sub_45E940();再点查看代码发现
+sub_45A7BE(&quot;done!!! the flag is &quot;);
+确定这为flag
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/26/csaw2013reversing2%20WP/" title="csaw2013reversing2 WP">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="csaw2013reversing2 WP"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/26/csaw2013reversing2%20WP/" title="csaw2013reversing2 WP">csaw2013reversing2 WP</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-26 22:28:47"><i class="far fa-calendar-alt"></i>2020-07-26</time></div><div class="content">csaw2013reversing2 WP用Exeinfo检查一下，无壳
+
+方法1 ida 直接莽代码用ida打开看看
+1234567891011121314151617181920int __cdecl __noreturn main(int argc, const char **argv, const char **envp)&#123;  int v3; // ecx  CHAR *lpMem; // [esp+8h] [ebp-Ch]  HANDLE hHeap; // [esp+10h] [ebp-4h]  hHeap = HeapCreate(0x40000u, 0, 0);  lpMem = (CHAR *)HeapAlloc(hHeap, 8u, MaxCount + 1);  memcpy_s(lpMem, MaxCount, &amp;unk_409B10, MaxCount);  if ( sub_40102A() || IsDebuggerPresent() )  &#123;    __debugbreak();    sub_401000(v3 + 4, l ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/26/1.python%E5%AD%A6%E4%B9%A0python%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" title="1.python学习python的基础语法">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.python学习python的基础语法"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/26/1.python%E5%AD%A6%E4%B9%A0python%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" title="1.python学习python的基础语法">1.python学习python的基础语法</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-26 22:28:47"><i class="far fa-calendar-alt"></i>2020-07-26</time></div><div class="content">基本语法元素12345678910#TemConvert.pyTempStr = input("请输入带有符号的温度值:")if TempStr[-1] in ['F','f']:    C = (eval(TempStr[0:-1]) - 32)/1.8    print("转换后的温度是&#123;:.2f&#125;C".format(C))elif TempStr[-1] in ['C','c']:        F = 1.8*eval(TempStr[0:-1])+32        print("转换后的温度是&#123;:.2f&#125;F".format(F))else:    print("输入格式错误")
+
+
+
+程序的格式框架缩进一行代码开始前的空白区域，表达程序的格式框架
+单程缩进   多层缩进
+严格明确缩进是语法的一部分，缩进不正确程序运行错误
+所属关系表达代码间包含和层次关系的唯一 手段
+长度一致程序内一致即可，一般用4个空格或1个TAB
+1#TemConvert.py
+
+注释用来提高代码可读性的辅助性文字，不被执行
+单行注释以#开头 ,其后内容为注释
+# ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/07/26/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-07-26 22:06:27"><i class="far fa-calendar-alt"></i>2020-07-26</time></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new "My New Post"
+
+More info: Writing
+Run server1$ hexo server
+
+More info: Server
+Generate static files1$ hexo generate
+
+More info: Generating
+Deploy to remote sites1$ hexo deploy
+
+More info: Deployment
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/02/14/%E6%B1%87%E7%BC%96%E7%AC%AC%E5%85%AD%E7%AB%A0/" title="汇编第六章">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="汇编第六章"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/14/%E6%B1%87%E7%BC%96%E7%AC%AC%E5%85%AD%E7%AB%A0/" title="汇编第六章">汇编第六章</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-02-14 19:43:34"><i class="far fa-calendar-alt"></i>2020-02-14</time></div><div class="content">包含多个段的程序6.1在代码段中使用数据
+assume cs.codesgcodesg segmentdw 0123h,0456h,0789h,0abch,0defh,0fedh,0cbah,0987hmov bx,0mov ax,0mov cx,8s: add ax,cs:[bx]add bx,2loop smov ax,4c00hint 21hcodesg endsend
+
+dw的含义是定义字型数据 define word（数据之间用逗号分隔）db的含义是定义单字节数据define byte上述8个字型数据存放在CS代码段里因为用dw定义的数据处于代码段的最开始，所以偏移地址为0，这8个数据就在代码段的偏移0、2、4、6、8、A、C、E处。如果需要让程序在编译后可以存系统中直接运行，我们需要在源程序中指明程序的入口
+
+assume cs.codesgcodesg segmentdw 0123h,0456h,0789h,0abch,Odefh,0fedh,0cbah,0987hstart: mov bx,0mov ax,Omov cx,8s: add ax,cs:[bx]add bx ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/02/13/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%BA%94%E7%AB%A0/" title="汇编第五章">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="汇编第五章"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/13/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%BA%94%E7%AB%A0/" title="汇编第五章">汇编第五章</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-02-13 23:25:22"><i class="far fa-calendar-alt"></i>2020-02-13</time></div><div class="content">[BX]和loop指令5.1 [bx][bx]
+assume cs:kk
+kk segment
+nn:   mov ax,2000H      mov ds,ax      mov al,[0]//等于mov al,0      mov bl,[1]//等于mov bl,1      mov cl,[3]      mov dl,[4]   
+mov ax,4c00Hint 21H
+kk endsend nn用编辑器和debug写的命令不同[bx]表示一个内存单元，它的偏移地址在bx中，比如不能mov ax,[0]只能mov bx,0mov ax,[bx]mov al,[bx]
+loop 循环描述性符号”()”(ax)=0010H2000:1000处的内容为0010H(21000H)=0010H对于mov ax,[2]的功能(ax)=((ds)16+2)对于mov [3],ax的功能((ds)16+2)=(ax)对于add ax,2的功能(ax)=(ax)+2对于add ax,bx的功能(ax)=(ax)+(bx)对于push ax的功能(sp)=(sp)-2((ss)16+(sp)) ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/02/12/%E6%B1%87%E7%BC%96%E7%AC%AC%E5%9B%9B%E7%AB%A0/" title="汇编第四章">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="汇编第四章"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/12/%E6%B1%87%E7%BC%96%E7%AC%AC%E5%9B%9B%E7%AB%A0/" title="汇编第四章">汇编第四章</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-02-12 13:56:00"><i class="far fa-calendar-alt"></i>2020-02-12</time></div><div class="content">4.1一个汇编语言程序（源程序）从写出到执行的过程编写-&gt;编译连接-&gt;执行(2)使用汇编语言编译程序（MASM.EXE）对源程序文件中的源程序进行编译，产生目标文件；再用连接程序（LINK.EXE）对目标文件进行连接，生成可在操作系统中直接运行的课执行文件。可执行文件中包含两部分程序和数据相关信息（程序大小）(3)执行可执行文件中的程序操作系统依照可执行文件中的描述信息，将可执行文件中的机器码和数据叫载入内存，并进行相关的初始化（比如：设置CS：IP指向第一条要执行的指令），然后由CPU执行程序。
+4.2 源程序assume cs:codesg
+codesg segment  start: mov ax,0123H         mov bx,0456H         add ax,bx         add ax,ax         mov ax,4c00h         int 21h
+codesg endsend start
+汇编指令有对应的机器码的指令，可以被编译位机器指令，最终为CPU所执行// mov add sub jmp伪指令除了汇编指令，别的都是 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/01/16/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="汇编第三章">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="汇编第三章"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/16/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="汇编第三章">汇编第三章</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-01-16 12:14:31"><i class="far fa-calendar-alt"></i>2020-01-16</time></div><div class="content">数据都不能和段地址发生直接替换，要借用寄存器Debug的T命令在执行修改寄存器SS的指令时，下一条指令也要紧接着被执行3.1  内存中字的存储存放方式在0地址处开始存放20000（4E20H）0   | 20H1   | 4EH2   | 12H3   | 00H4   |5   |上低下高（字型要考虑两个字节）（字节型数要考虑1个字节）0地址单元中存放的字节型数据为 20H0地址字单元中存放的字型数据为 20000（4E20H）2地址字单元中存放的字节型数据为12H2地址字单元中存放的字型数据为0012H1地址字单元中存放的字型数据为 124EH
+3.2  DS和[address]8086CPU中有一个DS寄存器，通常用来存放要访问的数据的段地址将数据直接送入寄存器 mov ax,2将一个寄存器中的内容送入另一个寄存器中 mov bx,ax还可以将一个内存单元中的内容送入一个寄存器。mov a1,[0]mov 寄存器名,内存单元地址[…]表示一个内存单元,[…]中的0表示内存单元的偏移地址执行指令时，8086CPU自动取DS中的数据为内存单元的段地址不能mov ds,1000H只能  ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/01/11/debug%E5%91%BD%E4%BB%A4/" title="debug命令">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="debug命令"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/11/debug%E5%91%BD%E4%BB%A4/" title="debug命令">debug命令</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-01-11 11:16:21"><i class="far fa-calendar-alt"></i>2020-01-11</time></div><div class="content">
+
+
+Debug命令
+参数
+功能
+
+
+
+A
+[地址]
+输入汇编指令
+
+
+C
+[范围] 起始地址
+对由“范围”指定的区域与“起始地址”指定的同大小区域进行比较，显示不相同的单元
+
+
+D
+[范围]
+显示指定范围内的内存单元内容
+
+
+E
+地址  字节值表
+用值表中的值替换从“地址”开始的内存单元内容
+
+
+F
+范围  字节值表
+用指定的字节值表来填充内存区域
+
+
+G
+[=起始地址][断点地址]
+从起点(或当前地点)开始执行，到终点结束
+
+
+H
+数值1  数值2
+显示二个十六进制数值之和、差
+
+
+I
+端口地址
+从端口输入
+
+
+L
+[地址 [驱动器号 扇区 扇区数]]
+从磁盘读
+
+
+M
+范围  地址
+把“范围”内的字节值传送到从“地址”开始的单元
+
+
+N
+文件标识符 [文件标识符…]
+指定文件名，为读/写文件做准备
+
+
+O
+端口地址  字节值
+向端口输出
+
+
+P
+[=地址]  [指令数]
+按执行过程，但不进入子程序调用或软中断
+
+
+Q
+
+退出DEBUG，不保存正在调试的文件
+
+
+R
+[寄存器名]
+显示和修改寄存器内容
+
+
+S
+范围  字节值表
+在内存区域内搜索指定的字节值表。如果找到，显示起始地址 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/01/10/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%BA%8C%E7%AB%A02/" title="汇编第二章2">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="汇编第二章2"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/10/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%BA%8C%E7%AB%A02/" title="汇编第二章2">汇编第二章2</a><div class="article-meta-wrap"><time class="post-meta__date" title="Created 2020-01-10 22:18:42"><i class="far fa-calendar-alt"></i>2020-01-10</time></div><div class="content">2.8段的概念内存并没有分段，短的划分来自于CPU，由于8086CPU用“段地址16+偏移地址=物理地址”的方式给出内存单元的物理地址，使得我们可以用分段的方式来管理内存。看需要我们可以将若干地址连续的内存单元看作一个段（1）段地址16必然是16的倍数，所以一个段的起始地址也一定是16的倍数（2）偏移地址为16位，16位地址的寻址能力为64k，所以一个段的长度最大为64k寻址范围:偏移地址16位，变化范围为0FFFFH，仅用偏移地址来寻址最多可寻64K个内存单元。给定段地址1000H，用偏移地址寻址，CPU的寻址范围为：10000H1FFFFH数据在21F60H内存单元中，对于8086PC机的两种描述：1.数据存在内存2000：1F60单元中2.数据存在内存的2000段中的1F60H单元中
+2.9段寄存器段寄存器就是提供段地址的8086CPU有4个段寄存器：CS，DS，SS，ESCS 代码段地址寄存器DS 数据段SS 堆栈段ES 附加段
+当8086CPU要访问内存时，由这4个寄存器提供内存单元的段地址IP为指令指针寄存器（与上网的不同）CS和IP时8086CPU中最关键的寄存器，它们指 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">Articles</div><div class="length_num">23</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" title="Bookmark"><i class="fas fa-bookmark"></i><span>Bookmark</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/2020/07/26/simple-unpack/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="simple-unpack" alt="simple-unpack"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/26/simple-unpack/" title="simple-unpack">simple-unpack</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-26 22:28:47">2020-07-26</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/26/re1/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="re1" alt="re1"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/26/re1/" title="re1">re1</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-26 22:28:47">2020-07-26</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/26/python-trade/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="python-trade" alt="python-trade"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/26/python-trade/" title="python-trade">python-trade</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-26 22:28:47">2020-07-26</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/26/open/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="open" alt="open"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/26/open/" title="open">open</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-26 22:28:47">2020-07-26</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/26/no-strings-attached/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="no-strings-attached" alt="no-strings-attached"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/26/no-strings-attached/" title="no-strings-attached">no-strings-attached</div><time class="aside-post_meta post-meta__date" title="Created 2020-07-26 22:28:47">2020-07-26</time></div></a></div></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">July 2020</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">February 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/01/"><span class="card-archive-list-date">January 2020</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/12/"><span class="card-archive-list-date">December 2019</span><span class="card-archive-list-count">1</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">Article :</div><div class="webinfo-article-count">23</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">UV :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">PV :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By John Doe</div><div class="framework-info"><span>Driven </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button class="translate_chn_to_cht" id="translateLink" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleEffect = true
+if (subtitleEffect) { 
+  var typed = new Typed("#subtitle", {
+    strings: "今日事&#44;今日畢,Never put off till tomorrow what you can do today".split(","),
+    startDelay: 300,
+    typeSpeed: 150,
+    loop: true,
+    backSpeed: 50
+  })
+} else {
+  document.getElementById("subtitle").innerHTML = '今日事&#44;今日畢'
+}</script></body></html>
