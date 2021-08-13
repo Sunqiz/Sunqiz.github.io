@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>汇编第五章 | Sunqiz's Blog</title><meta name="author" content="Sunqiz"><meta name="copyright" content="Sunqiz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="[BX]和loop指令5.1 [bx][bx] assume cs:kk kk segment nn:   mov ax,2000H      mov ds,ax      mov al,[0]&#x2F;&#x2F;等于mov al,0      mov bl,[1]&#x2F;&#x2F;等于mov bl,1      mov cl,[3]      mov dl,[4]    mov ax,4c00Hint 21H kk ends">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编第五章">
+<meta property="og:url" content="http://example.com/2020/02/13/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%BA%94%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Sunqiz&#39;s Blog">
+<meta property="og:description" content="[BX]和loop指令5.1 [bx][bx] assume cs:kk kk segment nn:   mov ax,2000H      mov ds,ax      mov al,[0]&#x2F;&#x2F;等于mov al,0      mov bl,[1]&#x2F;&#x2F;等于mov bl,1      mov cl,[3]      mov dl,[4]    mov ax,4c00Hint 21H kk ends">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130907439.jpg">
+<meta property="article:published_time" content="2020-02-13T15:25:22.000Z">
+<meta property="article:modified_time" content="2021-08-13T07:33:50.892Z">
+<meta property="article:author" content="Sunqiz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130907439.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/02/13/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%BA%94%E7%AB%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '汇编第五章',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-13 15:33:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Sunqiz's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130930239.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130907439.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Sunqiz's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">汇编第五章</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-02-13T15:25:22.000Z" title="发表于 2020-02-13 23:25:22">2020-02-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-13T07:33:50.892Z" title="更新于 2021-08-13 15:33:50">2021-08-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B1%87%E7%BC%96/">汇编</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="汇编第五章"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="BX-和loop指令"><a href="#BX-和loop指令" class="headerlink" title="[BX]和loop指令"></a>[BX]和loop指令</h1><h1 id="5-1-bx"><a href="#5-1-bx" class="headerlink" title="5.1 [bx]"></a>5.1 [bx]</h1><p>[bx]</p>
+<p>assume cs:kk</p>
+<p>kk segment</p>
+<p>nn:   mov ax,2000H<br>      mov ds,ax<br>      mov al,[0]//等于mov al,0<br>      mov bl,[1]//等于mov bl,1<br>      mov cl,[3]<br>      mov dl,[4]   </p>
+<p>mov ax,4c00H<br>int 21H</p>
+<p>kk ends<br>end nn<br>用编辑器和debug写的命令不同<br>[bx]表示一个内存单元，它的偏移地址在bx中，比如<br>不能<br>mov ax,[0]<br>只能<br>mov bx,0<br>mov ax,[bx]<br>mov al,[bx]</p>
+<h1 id="loop-循环"><a href="#loop-循环" class="headerlink" title="loop 循环"></a>loop 循环</h1><p>描述性符号”()”<br>(ax)=0010H<br>2000:1000处的内容为0010H<br>(21000H)=0010H<br>对于mov ax,[2]的功能<br>(ax)=((ds)*16+2)<br>对于mov [3],ax的功能<br>((ds)*16+2)=(ax)<br>对于add ax,2的功能<br>(ax)=(ax)+2<br>对于add ax,bx的功能<br>(ax)=(ax)+(bx)<br>对于push ax的功能<br>(sp)=(sp)-2<br>((ss)*16+(sp))=(ax)<br>对于pop ax的功能<br>(ax)=((ss)<em>16+(sp))<br>(sp)=(sp)+2<br>约定符号idata（我的数据//常量）<br><strong>mov ax,[idata]就代表mov ax,[1]、mov ax,[2]、mov ax,[3]等</strong><br><strong>mov bx,idata就代表mov bx,1、mov bx,2、mov bx,3等</strong><br><strong>mov ds,idata就代表mov ds,1.。。。但是这是错误的，非法的</strong><br>mov ax,[bx]<br>功能: bx中存放的数据作为一个偏移地址EA，段地址SA默认在ds中，将SA:EA处的数据送入ax中。<br>(ax)=(ds</em>16+(bx))<br>mov| bx ,ax<br>功能:bx中存放的数据作为一个偏移地址EA，段地址SA默认在ds中，将ax中的数据送入内存SA:EA处。<br>(ds *16 +(bx)) = (ax)</p>
+<h1 id="inc-bx的含义是nx中的内容加1"><a href="#inc-bx的含义是nx中的内容加1" class="headerlink" title="inc bx的含义是nx中的内容加1"></a>inc bx的含义是nx中的内容加1</h1><p>mov bx，1<br>inc bx<br>bx=2</p>
+<h1 id="5-2-loop指令"><a href="#5-2-loop指令" class="headerlink" title="5.2 loop指令"></a>5.2 loop指令</h1><p>指令的格式是:loop标号，CPU执行loop指令<br>(cx)=(cx)-1<br>判断cx中的值，不为零则转至标号处执行程序，如果为零则向下执行。<br>cx的值影响着loop指令的执行结果<br>Cx中存放循环次数<br>2^2</p>
+<p>assume cs:code<br>code segment<br>     mov ax,2<br>     add ax,ax</p>
+<p>mov ax,4c00H<br>int 21H<br>code ends</p>
+<p>end</p>
+<hr>
+<p>2^3</p>
+<p>assume cs:code</p>
+<p>code segment<br>   mov ax,2<br>   add ax,ax<br>   add ax,ax</p>
+<p>   mov ax,4c00H<br>   int 21H<br>code ends</p>
+<p>end</p>
+<hr>
+<p>2^12<br>Assume cs:code<br>code segment<br>mov ax,2<br>mov cx,11<br>s: add ax,ax<br>loop s//s为标号</p>
+<p>mov ax,4c00H<br>int 21H<br>code ends<br>end<br>(1)标号<br>在汇编语言中，标号代表一个地址，此程序中有一个标号s。它实际上标识了一个地址，这个地址处有一条指令: add ax,ax。<br>(2)loop s<br>CPU执行loop s的时候，要进行两步操作:<br>①(cx)=(cx)-1 ;<br>②判断cx中的值，不为0则转至标号s所标识的地址处执行(这里的指令是“add ax,ax)，如果为零则执行下一条指令(下一条指令是mov ax,4c00h)。<br>(3)以下三条指令<br>mov cx,1 1<br>s: add ax,ax<br>loop s<br>执行loop s时，首先要将(cx)减1，然后若(cx)不为0，则向前转至s处执行add ax,ax。所以，我们可以利用cx来控制add ax,ax的执行次数<br>loop指令<br>(1)在cx中存放循环次数;<br>(2)loop指令中的标号所标识地址要在前面;<br>(3)要循环执行的程序段，要写在标号和loop指令的中间。<br>mov cx,循环次数<br>s:<br>循玎执行的程序段<br>loop s//（cx=cx-1 判断cx是否为0）</p>
+<h1 id="5-3在Debug中跟踪用loop指令实现的循环程序"><a href="#5-3在Debug中跟踪用loop指令实现的循环程序" class="headerlink" title="5.3在Debug中跟踪用loop指令实现的循环程序"></a>5.3在Debug中跟踪用loop指令实现的循环程序</h1><p>我们说的是“赋值”，就是说，让ax中的数据的值(数据的大小)和ffff:0006单元中的数据的值(数据的大小)相等。<br>8位数据01H和16位数据0001H的数据长度不一样，但它们的值是相等的。</p>
+<h2 id="不能直接mov-ax-bx-要mov-al-bx-–mov-ah-0-否则会将ds-bx-和ds-bx-1-的值赋给ax"><a href="#不能直接mov-ax-bx-要mov-al-bx-–mov-ah-0-否则会将ds-bx-和ds-bx-1-的值赋给ax" class="headerlink" title="不能直接mov ax,[bx],要mov al,[bx]–mov ah,0,否则会将ds:[bx]和ds:[bx+1]的值赋给ax"></a>不能直接mov ax,[bx],要mov al,[bx]–mov ah,0,否则会将ds:[bx]和ds:[bx+1]的值赋给ax</h2><p>注意程序中的第一条指令mov ax,0ffffh。<br>我们知道大于9FFFH的十六进制数据A000H、A001H、…..、COOOH、COO1H、、FFFEH、FFFFH等，在书写的时候都是以字母开头的。</p>
+<h2 id="而在3汇编源程序中，数据不能以字母开头，所以要在前面加0。"><a href="#而在3汇编源程序中，数据不能以字母开头，所以要在前面加0。" class="headerlink" title="而在3汇编源程序中，数据不能以字母开头，所以要在前面加0。"></a>而在3汇编源程序中，数据不能以字母开头，所以要在前面加0。</h2><p>调试多次用G命令也可以用P命令<br>-g XXXX<br>XXXX偏移地址<br>-p直接循环完</p>
+<h1 id="5-4debug和汇编编译器MASM对指令的不同处理"><a href="#5-4debug和汇编编译器MASM对指令的不同处理" class="headerlink" title="5.4debug和汇编编译器MASM对指令的不同处理"></a>5.4debug和汇编编译器MASM对指令的不同处理</h1><p><strong>debug中数字默认16进制masm中默认10进制</strong><br>#5.5 loop和[bx]的联合应用<br>在做加法的时候，我们有两种方法:<br>(dx)=(dx)+内存中的8位数据:<br>(dl)=(dl)+内存中的8位数据;<br>第一种方法中的问题是两个运算对象的类型不匹配，第二种方法中的问题是结果有可能超界。<br>目前的方法(后面还有别的方法)就是得用一个16位寄存器来做中介。<br>mov ax,0ffffH<br>mov ds,ax ;设置(ds)=0ffffh<br>mov dx,0 ;初始化素累加寄存器，(dx)=0<br>mov al,ds: [0]<br>mov ah,0 ;(ax)=((ds)*16+0)= (0ffff0h)<br>add dx,ax ;向dx中加.上offffh:0单元的数值</p>
+<p><strong>loop改进后</strong><br>mov ax,0ffffH<br>mov ds,ax<br>mov dx,0<br>mov bx,0<br>mov cx,000bH<br>s:  mov al,[bx]<br>mov ah,0<br>add dx,ax<br>inc bx<br>loop s<br>5.6 段前缀<br>指令“mov ax,[bx]”中 ，内存单元的偏移地址由bx给出，而段地址默认在ds中。//ds就称之为段前缀<br>我们可以在访问内存单元的指令中显式地给出内存单元的段地址所在的段寄存器。<br>这些出现在访问内存单元的指令中，用于显式地指明内存单元的段地址的”ds:”、”cs:”、”ss:”或”es:”，在汇编语言中称为段前缀<br>mov ax,cs:[0]<br>mov bx,es:[0]</p>
+<h1 id="5-7一段安全的空间"><a href="#5-7一段安全的空间" class="headerlink" title="5.7一段安全的空间"></a>5.7一段安全的空间</h1><p>在8086模式中，随意向一段内存空间写入内容是很危险的，因为这段空间中可能存放着重要的系统数据或代码。<br><strong>在一般的PC机中，DOS方式下，DOS和其他合法的程序一般都不会使用0:2000:2FF( 0:200h~0:2FFh) 的256个字节的空间。所以，我们使用这段空间是安全的。</strong></p>
+<h1 id="5-8段前缀的使用"><a href="#5-8段前缀的使用" class="headerlink" title="5.8段前缀的使用"></a>5.8段前缀的使用</h1><p>将内存ffff:0~ ffff:b单元中的数据拷贝到0:200<del>0:20b单元中。<br>(1) 0:200</del>0:20b单元等同于0020:0 -0020:b单元，它们描述的是同一段内存空间:<br>(2)拷贝的过程应用循环实现，简要描述如下:<br>初始化: X=0<br>循环12次:<br>将fff:X单元中的数据送入0020:X(需要用一个寄存器中转)<br>X=X+1<br>(3)在循环中，源单f元ff:X和目标单元的0020:X的偏移地址X是变量。我们用bx来存放。<br>(4)我们用将0:200<del>0:20b用0020:0</del>0020:b描述，就是为了使目标单元的偏移地址和源始单元的偏移地址从同一数值0开始。</p>
+<hr>
+<p>assume cs:code<br>code segment<br>mov bx, 0; (bx)=0,偏移地址从o开始<br>mov cx,12; (cx)=12， 循环12次<br>s: mov ax,offffh<br>mov ds ,ax; (ds)=Offffh<br>mov dl, [bx] ; (dl)=((ds)*16+(bx))，将ffff :bx中的数据送入dl<br>mov ax,0020h<br>mov ds,ax ; (ds)=0020h<br>mov [bx],dl ; ((ds)*16+ (bx))=(dl)，将dl的数据送入0020:bx<br>inc bx ; (bx)=(bx) +1<br>loop s<br>mov ax,4c00h<br>int 21h<br>code ends<br>end</p>
+<hr>
+<p>改进<br>assume cs:code<br>code segment<br>mov ax,0ffffH<br>mov ax,0020h<br>mov es,ax<br>mov bx,0<br>mov cx,12<br>s: mov dl,[bx]<br>mov es:[bx],dl<br>inc bx<br>loop s</p>
+<p>mov ax,4c00h<br>int 21h<br>code ends<br>end</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Sunqiz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/02/13/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%BA%94%E7%AB%A0/">http://example.com/2020/02/13/%E6%B1%87%E7%BC%96%E7%AC%AC%E4%BA%94%E7%AB%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Sunqiz's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130907439.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/02/14/%E6%B1%87%E7%BC%96%E7%AC%AC%E5%85%AD%E7%AB%A0/"><img class="prev-cover" src="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130909079.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">汇编第六章</div></div></a></div><div class="next-post pull-right"><a href="/2020/02/12/%E6%B1%87%E7%BC%96%E7%AC%AC%E5%9B%9B%E7%AB%A0/"><img class="next-cover" src="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130908799.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">汇编第四章</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130930239.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sunqiz</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Sunqiz"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/sunqiz" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">My heart and my action are clear like mirror, all what I have done is for the justice.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BX-%E5%92%8Cloop%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">[BX]和loop指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-1-bx"><span class="toc-number">2.</span> <span class="toc-text">5.1 [bx]</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#loop-%E5%BE%AA%E7%8E%AF"><span class="toc-number">3.</span> <span class="toc-text">loop 循环</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#inc-bx%E7%9A%84%E5%90%AB%E4%B9%89%E6%98%AFnx%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9%E5%8A%A01"><span class="toc-number">4.</span> <span class="toc-text">inc bx的含义是nx中的内容加1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-2-loop%E6%8C%87%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">5.2 loop指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-3%E5%9C%A8Debug%E4%B8%AD%E8%B7%9F%E8%B8%AA%E7%94%A8loop%E6%8C%87%E4%BB%A4%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%A8%8B%E5%BA%8F"><span class="toc-number">6.</span> <span class="toc-text">5.3在Debug中跟踪用loop指令实现的循环程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5mov-ax-bx-%E8%A6%81mov-al-bx-%E2%80%93mov-ah-0-%E5%90%A6%E5%88%99%E4%BC%9A%E5%B0%86ds-bx-%E5%92%8Cds-bx-1-%E7%9A%84%E5%80%BC%E8%B5%8B%E7%BB%99ax"><span class="toc-number">6.1.</span> <span class="toc-text">不能直接mov ax,[bx],要mov al,[bx]–mov ah,0,否则会将ds:[bx]和ds:[bx+1]的值赋给ax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%80%8C%E5%9C%A83%E6%B1%87%E7%BC%96%E6%BA%90%E7%A8%8B%E5%BA%8F%E4%B8%AD%EF%BC%8C%E6%95%B0%E6%8D%AE%E4%B8%8D%E8%83%BD%E4%BB%A5%E5%AD%97%E6%AF%8D%E5%BC%80%E5%A4%B4%EF%BC%8C%E6%89%80%E4%BB%A5%E8%A6%81%E5%9C%A8%E5%89%8D%E9%9D%A2%E5%8A%A00%E3%80%82"><span class="toc-number">6.2.</span> <span class="toc-text">而在3汇编源程序中，数据不能以字母开头，所以要在前面加0。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-4debug%E5%92%8C%E6%B1%87%E7%BC%96%E7%BC%96%E8%AF%91%E5%99%A8MASM%E5%AF%B9%E6%8C%87%E4%BB%A4%E7%9A%84%E4%B8%8D%E5%90%8C%E5%A4%84%E7%90%86"><span class="toc-number">7.</span> <span class="toc-text">5.4debug和汇编编译器MASM对指令的不同处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-7%E4%B8%80%E6%AE%B5%E5%AE%89%E5%85%A8%E7%9A%84%E7%A9%BA%E9%97%B4"><span class="toc-number">8.</span> <span class="toc-text">5.7一段安全的空间</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-8%E6%AE%B5%E5%89%8D%E7%BC%80%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">9.</span> <span class="toc-text">5.8段前缀的使用</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/08/13/%E8%92%B8%E7%B1%B3ROP_linux_X86/" title="一步一步学ROP之linux_x86学习"><img src="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130908253.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一步一步学ROP之linux_x86学习"/></a><div class="content"><a class="title" href="/2021/08/13/%E8%92%B8%E7%B1%B3ROP_linux_X86/" title="一步一步学ROP之linux_x86学习">一步一步学ROP之linux_x86学习</a><time datetime="2021-08-13T11:39:43.686Z" title="发表于 2021-08-13 19:39:43">2021-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/13/%E6%B9%96%E6%B9%98%E6%9D%AFS390/" title="2020 湖湘杯 easyZ 框架(S390)"><img src="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108121950932.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2020 湖湘杯 easyZ 框架(S390)"/></a><div class="content"><a class="title" href="/2021/08/13/%E6%B9%96%E6%B9%98%E6%9D%AFS390/" title="2020 湖湘杯 easyZ 框架(S390)">2020 湖湘杯 easyZ 框架(S390)</a><time datetime="2021-08-13T11:39:43.683Z" title="发表于 2021-08-13 19:39:43">2021-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/13/%E5%B7%85%E5%B3%B0%E6%9E%81%E5%AE%A2reverse%20baby_maze/" title="巅峰极客reverse baby_maze"><img src="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130907995.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="巅峰极客reverse baby_maze"/></a><div class="content"><a class="title" href="/2021/08/13/%E5%B7%85%E5%B3%B0%E6%9E%81%E5%AE%A2reverse%20baby_maze/" title="巅峰极客reverse baby_maze">巅峰极客reverse baby_maze</a><time datetime="2021-08-13T11:39:43.655Z" title="发表于 2021-08-13 19:39:43">2021-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%80%9D%E8%B7%AF/" title="安卓逆向思路"><img src="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108121950932.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安卓逆向思路"/></a><div class="content"><a class="title" href="/2021/08/13/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%80%9D%E8%B7%AF/" title="安卓逆向思路">安卓逆向思路</a><time datetime="2021-08-13T11:39:43.653Z" title="发表于 2021-08-13 19:39:43">2021-08-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/13/Stegsolve%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="Stegsolve使用介绍"><img src="https://sunqiz.oss-cn-beijing.aliyuncs.com/img/202108130907439.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Stegsolve使用介绍"/></a><div class="content"><a class="title" href="/2021/08/13/Stegsolve%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" title="Stegsolve使用介绍">Stegsolve使用介绍</a><time datetime="2021-08-13T11:39:43.650Z" title="发表于 2021-08-13 19:39:43">2021-08-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Sunqiz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
